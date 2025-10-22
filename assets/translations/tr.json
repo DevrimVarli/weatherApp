@@ -1,0 +1,41 @@
+{
+  "today_summary": "Haftanın Özeti",
+  "city_change": "Şehri Değiştir",
+  "weather": "Hava Durumu",
+  "filter": "Filtre",
+  "home": "Anasayfa",
+  "humidity": "Nem {humidity}%",
+  "weather_message": "Bugün {description} bir hava hakim.\nNem oranı {humidity}%, hissedilen sıcaklık {degree}° civarında.",
+  "night_temperature": "{night}° Gece",
+
+  "city_select_title": "Şehir Seçimi",
+  "city_select_hint": "Lütfen aşağıdaki listeden bir şehir seçin:",
+  "city_field_label": "Şehir",
+  "city_country_name": "Türkiye",
+  "city_select_button": "Şehri Seç",
+  "city_cancel": "İptal",
+  "city_selected_fallback": "Konum Alınıyor",
+  "city_not_found": "Şehir verisi bulunamadı.",
+  "city_cannot_get": "Konum alınamadı.",
+
+  "ui_retry": "Tekrar Dene",
+
+  "weather_max_label": "En yüksek",
+  "weather_min_label": "En düşük",
+  "weather_range": "H:{max}°  L:{min}°",
+  "weather_header_city_country": "{city}, Türkiye",
+  "weather_description": "Bugün {description} bir hava hakim.",
+  "weather_humidity": "Nem oranı {humidity}%",
+  "weather_feels_like": "Hissedilen sıcaklık {degree}° civarında.",
+  "weather_night_temp": "{night}° Gece",
+
+  "error_generic": "Hata oluştu: {err}",
+  "error_unexpected_format": "Beklenmeyen veri formatı.",
+  "error_unauthorized": "Yetkilendirme hatası (401/403). API anahtarını kontrol et.",
+  "error_request_failed": "İstek başarısız: {statusCode}",
+  "error_data_load": "Veriler yüklenemedi.\n{error}",
+
+  "weather_arrow_max": "↑ {max}°",
+  "weather_arrow_min": "↓ {min}°",
+  "weather_no_data": "Hava durumu verisi bulunamadı."
+}
