@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/core/theme/theme_palette.dart';
 import 'package:weather_app/route/app_routes.dart';
 
 void main() async {
@@ -16,11 +18,11 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return MaterialApp.router(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -28,9 +30,25 @@ class MyApp extends StatelessWidget {
       routerConfig: appRoutes,
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      theme: FlexThemeData.light(
+        colors: myLightColors, // Light renk paleti
+        subThemesData: const FlexSubThemesData(
+          elevatedButtonRadius: 12, // Buton köşe yuvarlatma
+          inputDecoratorRadius: 12, // Input köşe yuvarlatma
+          useMaterial3Typography: true, // Material 3 tipografi
+        ),
       ),
+
+      // Dark tema
+      darkTheme: FlexThemeData.dark(
+        colors: myDarkColors, // Dark renk paleti
+        subThemesData: const FlexSubThemesData(
+          elevatedButtonRadius: 12,
+          inputDecoratorRadius: 12,
+          useMaterial3Typography: true,
+        ),
+      ),
+     /*  themeMode: ref.watch(themeModeControllerProvider), */
     );
   }
 }

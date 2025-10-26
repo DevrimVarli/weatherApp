@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/common/theme_extension';
 import 'package:weather_app/features/filters_screen/presentation/widgets/city_choose_alert.dart';
 
 // Ekranın üst kısmındaki şehir ve ülke bilgisini gösteren bileşen
@@ -11,6 +12,8 @@ class HeaderCityRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Row(
       children: <Widget>[
         // metinler
@@ -20,18 +23,15 @@ class HeaderCityRow extends StatelessWidget {
             children: <Widget>[
               Text(
                 '$city, $country',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                style: textTheme.titleLarge?.copyWith(
+                  color: colorScheme.surface,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 'today_summary'.tr(),
-                style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.85),
-                  fontSize: 14,
+                style: textTheme.titleSmall?.copyWith(
+                  color: colorScheme.surface.withValues(alpha: 0.85),
                 ),
               ),
             ],
@@ -40,12 +40,12 @@ class HeaderCityRow extends StatelessWidget {
         Expanded(
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white.withValues(alpha: 0.12),
-              foregroundColor: Colors.white,
+              backgroundColor: context.colors.surface.withValues(alpha: 0.12),
+              foregroundColor: context.colors.surface,
               elevation: 0,
             ),
             onPressed: () {
-              showDialog(
+              showDialog<void>(
                 context: context,
                 builder: (BuildContext context) => CityChooseAlert(),
               );

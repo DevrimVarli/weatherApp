@@ -1,0 +1,6 @@
+Set-Alias fbar "flutter build apk --release"
+Set-Alias fbad "flutter build apk --debug"
+Set-Alias fr "flutter run"
+Set-Alias fbr "flutter pub run build_runner build --delete-conflicting-outputs"
+Set-Alias fpg "flutter pub get"
+Set-Alias fc "flutter clean"

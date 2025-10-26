@@ -13,6 +13,7 @@ class LocationController extends _$LocationController {
       longitude: 0,
     );
   }
+  // ignore: use_setters_to_change_properties
   void updateLocation(LocationModel newLocation) {
     state = newLocation;
   }

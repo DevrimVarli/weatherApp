@@ -9,6 +9,7 @@ class PagesIndex extends _$PagesIndex {
     return 0;
   }
 
+  // ignore: use_setters_to_change_properties
   void setIndex(int newIndex) {
     state = newIndex;
   }

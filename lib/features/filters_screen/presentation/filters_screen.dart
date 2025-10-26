@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_app/common/theme_extension';
 import 'package:weather_app/features/filters_screen/presentation/widgets/error_screen.dart';
 import 'package:weather_app/features/filters_screen/presentation/widgets/header_city_row.dart';
 import 'package:weather_app/features/filters_screen/presentation/widgets/skeleton_list.dart';
@@ -23,6 +24,8 @@ class FiltersScreen extends ConsumerStatefulWidget {
 class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     LocationModel location = ref.watch(locationControllerProvider);
     String city = normalizeCityName(location.cityName);
 
@@ -31,19 +34,17 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
     );
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: context.colors.onSurface,
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 80,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Hava Durumu',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.w700,
-            letterSpacing: .4,
+          style: textTheme.headlineMedium?.copyWith(
+            color: colorScheme.surface,
+            letterSpacing: 0.4,
           ),
         ),
       ),
@@ -101,8 +102,9 @@ class _FiltersScreenState extends ConsumerState<FiltersScreen> {
             message: 'error_data_load'.tr(
               namedArgs: <String, String>{'error': error.toString()},
             ),
-            onRetry: () =>
-                ref.refresh(weatherDataRepositoryProvider(location.cityName)),
+            onRetry: () => ref.invalidate(
+              weatherDataRepositoryProvider(location.cityName),
+            ),
           );
         },
         loading: () => const SkeletonList(),

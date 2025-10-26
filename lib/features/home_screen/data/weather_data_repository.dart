@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:weather_app/features/home_screen/domain/weather_model.dart';
@@ -15,7 +14,7 @@ Future<List<WeatherModel>> weatherDataRepository(Ref ref, String city) async {
     'https://api.collectapi.com/weather/getWeather?lang=tr&city=$city',
     options: Options(
       headers: <String, dynamic>{
-        'authorization': 'apikey ${dotenv.env['API_KEY']}',
+        'authorization': 'apikey 31QfpYJrZQMyc1DDy2yP2T:5F5a6rC1re42ZICQOrQo8Y',
         'content-type': 'application/json',
       },
       validateStatus: (int? s) => s != null && s < 500,

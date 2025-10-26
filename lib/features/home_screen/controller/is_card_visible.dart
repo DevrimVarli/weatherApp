@@ -8,6 +8,7 @@ class IsCardVisible extends _$IsCardVisible {
     return false;
   }
 
+  // ignore: avoid_positional_boolean_parameters, use_setters_to_change_properties
   void switchVisibility(bool isVisible) {
     state = isVisible;
   }

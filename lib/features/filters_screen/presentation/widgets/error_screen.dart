@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:weather_app/common/theme_extension';
 
 // Error ekranı bileşeni
 class ErrorState extends StatelessWidget {
@@ -10,6 +11,8 @@ class ErrorState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     return DecoratedBox(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -24,22 +27,30 @@ class ErrorState extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const Icon(Icons.error_outline, color: Colors.white70, size: 48),
+              Icon(
+                Icons.error_outline,
+                color: context.colors.surface,
+                size: 48,
+              ),
               const SizedBox(height: 12),
               Text(
                 message,
-                style: const TextStyle(color: Colors.white, fontSize: 14),
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.surface,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: onRetry,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white.withValues(alpha: 0.12),
-                  foregroundColor: Colors.white,
+                  backgroundColor: context.colors.surface.withValues(
+                    alpha: 0.12,
+                  ),
+                  foregroundColor: context.colors.surface,
                   elevation: 0,
                 ),
-                child:  Text('ui.retry'.tr()),
+                child: Text('ui_retry'.tr()),
               ),
             ],
           ),

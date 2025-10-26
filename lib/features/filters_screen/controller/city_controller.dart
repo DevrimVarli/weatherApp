@@ -8,6 +8,7 @@ class CityController extends _$CityController {
     return '';
   }
 
+  // ignore: use_setters_to_change_properties
   void updateCity(String newCity) {
     state = newCity;
   }
