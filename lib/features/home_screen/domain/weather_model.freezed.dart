@@ -28,8 +28,7 @@ mixin _$WeatherModel {
   String get min => throw _privateConstructorUsedError;
   String get max => throw _privateConstructorUsedError;
   String get night => throw _privateConstructorUsedError;
-  String get humidity => throw _privateConstructorUsedError; // ← düzeltildi
-  // (İstersen)
+  String get humidity => throw _privateConstructorUsedError;
   String? get icon => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
 
@@ -268,8 +267,6 @@ class _$WeatherModelImpl implements _WeatherModel {
   final String night;
   @override
   final String humidity;
-  // ← düzeltildi
-  // (İstersen)
   @override
   final String? icon;
   @override
@@ -361,8 +358,7 @@ abstract class _WeatherModel implements WeatherModel {
   @override
   String get night;
   @override
-  String get humidity; // ← düzeltildi
-  // (İstersen)
+  String get humidity;
   @override
   String? get icon;
   @override

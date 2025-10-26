@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:weather_app/common/theme_extension';
 
 /// Hava durumu simgesini gösteren bileşen
 class WeatherIcon extends StatelessWidget {
@@ -12,13 +13,15 @@ class WeatherIcon extends StatelessWidget {
       height: 70,
       width: 70,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.06),
+        color: context.colors.surface.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+        border: Border.all(
+          color: context.colors.surface.withValues(alpha: 0.12),
+        ),
       ),
       clipBehavior: Clip.antiAlias,
       child: (url.isEmpty)
-          ? const Icon(Icons.cloud, color: Colors.white, size: 40)
+          ?  Icon(Icons.cloud, color: context.colors.surface, size: 40)
           : Lottie.asset(
               'assets/animated/${url.toLowerCase()}.json',
               repeat: true,

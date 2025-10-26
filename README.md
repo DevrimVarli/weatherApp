@@ -26,8 +26,8 @@ Flutter ile geliştirilmiş modern hava durumu uygulaması.
 > Görselleri `assets/img/` klasörüne ekleyebilirsin.  
 > Aşağıdaki tablo örnek olarak hazırlanmıştır.
 
-| 🌤️ Anasayfa | 🔍 Şehir Arama | 📊 Detay Sayfası |
-|-------------|----------------|-----------------|
+| 🌤️ Anasayfa | 🔍 Şehir Arama | 📊 Detay Sayfası | 📊 Şehir Seçme Sayfası |
+|-------------|----------------|-----------------|-----------------|
 | ![home](assets/screenshots/home_screen.jpg) | ![filter](assets/screenshots/filter_screen.jpg) | ![drawable](assets/screenshots/drawable_screen.jpg) | ![city](assets/screenshots/sehir.jpg) |
 
 ---

@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather_app/common/controller/pages_index_controller.dart';
+import 'package:weather_app/common/theme_extension';
 import 'package:weather_app/common/widgets/card.dart';
 import 'package:weather_app/features/filters_screen/presentation/filters_screen.dart';
 import 'package:weather_app/features/home_screen/controller/is_card_visible.dart';
@@ -24,6 +25,8 @@ class _BottomAppNavigationBarState
   Widget build(BuildContext context) {
     bool isCardVisible = ref.watch(isCardVisibleProvider);
     int state = ref.watch(pagesIndexProvider);
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       extendBody: true,
@@ -33,11 +36,11 @@ class _BottomAppNavigationBarState
       // 🔹 Ortada + buton
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.black26,
+              color: context.colors.onSurface,
               blurRadius: 10,
               offset: Offset(0, 4),
             ),
@@ -49,10 +52,10 @@ class _BottomAppNavigationBarState
           onPressed: () {
             ref
                 .read(isCardVisibleProvider.notifier)
-                .switchVisibility(!isCardVisible); 
+                .switchVisibility(!isCardVisible);
             if (!isCardVisible) {
-              showModalBottomSheet(
-                barrierColor: Colors.black.withValues(alpha: 0.2),
+              showModalBottomSheet<void>(
+                barrierColor: context.colors.onSurface.withValues(alpha: 0.2),
                 context: context,
                 isScrollControlled: true, // tam ekran genişleyebilir
                 backgroundColor: Colors.transparent, // köşeler yumuşak görünür
@@ -68,7 +71,7 @@ class _BottomAppNavigationBarState
           },
           child: Icon(
             isCardVisible ? Icons.close : Icons.add,
-            color: Colors.white,
+            color: context.colors.surface,
           ),
         ),
       ),
@@ -82,7 +85,7 @@ class _BottomAppNavigationBarState
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: BottomAppBar(
-            color: Colors.white.withValues(alpha: 0.1),
+            color: context.colors.surface.withValues(alpha: 0.1),
             shape: const CircularNotchedRectangle(),
             notchMargin: 8,
             child: Row(
@@ -92,14 +95,20 @@ class _BottomAppNavigationBarState
                   icon: Icons.person_rounded,
                   label: 'home'.tr(),
                   isActive: state == 0,
-                  onTap: () => ref.read(pagesIndexProvider.notifier).setIndex(0),
+                  onTap: () =>
+                      ref.read(pagesIndexProvider.notifier).setIndex(0),
+                  colorScheme: colorScheme,
+                  textTheme: textTheme,
                 ),
                 const SizedBox(width: 60), // orta + buton boşluğu
                 _navButton(
                   icon: Icons.filter_alt_rounded,
                   label: 'filter'.tr(),
                   isActive: state == 1,
-                  onTap: () => ref.read(pagesIndexProvider.notifier).setIndex(1),
+                  onTap: () =>
+                      ref.read(pagesIndexProvider.notifier).setIndex(1),
+                  colorScheme: colorScheme,
+                  textTheme: textTheme,
                 ),
               ],
             ),
@@ -114,6 +123,8 @@ class _BottomAppNavigationBarState
     required String label,
     required bool isActive,
     required VoidCallback onTap,
+    required TextTheme textTheme,
+    required ColorScheme colorScheme,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -125,7 +136,7 @@ class _BottomAppNavigationBarState
 
               decoration: BoxDecoration(
                 color: isActive
-                    ? const Color(0xFF7F5AF0).withValues(alpha: 0.15)
+                    ? colorScheme.primary.withValues(alpha: 0.15)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -134,17 +145,14 @@ class _BottomAppNavigationBarState
                 size: 26,
                 color: isActive
                     ? const Color(0xFF7F5AF0)
-                    : Colors.white.withValues(alpha: 0.7),
+                    : context.colors.surface.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 3),
             Text(
               label,
-              style: TextStyle(
-                color: isActive
-                    ? const Color(0xFF7F5AF0)
-                    : Colors.white.withValues(alpha: 0.6),
-                fontSize: 12,
+              style: textTheme.bodyMedium?.copyWith(
+                color: isActive ? colorScheme.primary : colorScheme.surface,
               ),
             ),
           ],

@@ -16,6 +16,8 @@ class CityChooseAlert extends ConsumerStatefulWidget {
 class _CityChooseAlertState extends ConsumerState<CityChooseAlert> {
   @override
   Widget build(BuildContext context) {
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     AsyncValue<List<CityModel>> cityAsyncValue = ref.watch(getCityDataProvider);
     return AlertDialog(
       // AlertDialog yerine Dialog kullanmak, içeriği daha serbest kontrol etmemizi sağlar
@@ -27,7 +29,9 @@ class _CityChooseAlertState extends ConsumerState<CityChooseAlert> {
           if (cities.isEmpty) {
             return Text(
               'city_not_found'.tr(),
-              style: TextStyle(color: Colors.red),
+              style: textTheme.titleMedium?.copyWith(
+                color: colorScheme.primary,
+              ),
             );
           }
 
@@ -39,7 +43,7 @@ class _CityChooseAlertState extends ConsumerState<CityChooseAlert> {
             'error_generic'.tr(
               namedArgs: <String, String>{'err': err.toString()},
             ),
-            style: const TextStyle(color: Colors.red),
+            style: TextStyle(color: colorScheme.primary),
           ),
         ),
       ),
